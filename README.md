@@ -152,3 +152,59 @@ With that, I conclude this brief summary of IPL 2023. Please feel free to scroll
          	GROUP BY striker) T4
     ON T1.Player = T4.Player
     ORDER BY Runs DESC;
+
+### Wicket Takers List
+    SELECT T2.Player, T4.Innings, T3.Overs, T2.Runs,
+	          CASE
+	             	WHEN T1.Wickets IS NULL THEN 0
+		             ELSE T1.Wickets
+	          END AS Wickets,
+		         ROUND((T2.Runs/T3.Balls)*6, 2) AS Economy, ROUND(T3.Balls/T1.Wickets, 2) AS SR,
+           ROUND(T2.Runs/Wickets, 2) AS Average, T1.Team
+    FROM (SELECT bowler AS Player, COUNT(player_dismissed) AS Wickets, bowling_team AS Team
+   	      FROM IPL_2023.deliveries
+   	      WHERE player_dismissed != '' AND wicket_type NOT IN ('retired hurt', 'run out', 'retired out')
+   	      GROUP BY bowler, bowling_team) T1
+    RIGHT JOIN 
+   	      (SELECT bowler AS Player, (SUM(runs_off_bat) + SUM(wides) + SUM(noballs)) AS Runs
+   	       FROM IPL_2023.deliveries
+   	       GROUP BY bowler) T2
+    ON T2.Player = T1.Player
+    LEFT JOIN
+   	      (SELECT bowler AS Player, COUNT(ball) AS Balls, ROUND(((FLOOR(COUNT(ball)/6)) + ((COUNT(ball)%6)/10)), 1) AS Overs
+   	       FROM IPL_2023.deliveries
+   	       WHERE wides = '' AND noballs = ''
+   	       GROUP BY bowler) T3
+    ON T2.Player = T3.Player
+    LEFT JOIN
+   	      (SELECT bowler AS Player, COUNT(DISTINCT(match_id)) AS Innings
+   	       FROM IPL_2023.deliveries
+   	       GROUP BY bowler) T4
+    ON T2.Player = T4.Player
+    ORDER BY T1.Wickets DESC, Economy;
+
+### Teamwise Batting Numbers
+    SELECT T1.Team, T1.Innings,  T1.Runs, T2.Overs, ROUND((T1.Runs/T3.Balls)*100, 2) AS 'Strike Rate', ROUND((T1.Runs/T2.Balls)*6, 2) AS 'Run Rate',
+	          ROUND((T1.Runs/T4.Wickets), 2) AS Average
+    FROM (SELECT batting_team AS Team, COUNT(DISTINCT(match_id)) AS Innings, SUM(runs_off_bat) + SUM(extras) AS Runs
+	         FROM IPL_2023.deliveries
+	         GROUP BY batting_team) T1
+    LEFT JOIN
+	        (SELECT batting_team AS Team, COUNT(ball) AS Balls, ROUND(((FLOOR(COUNT(ball)/6)) + ((COUNT(ball)%6)/10)), 1) AS Overs
+	         FROM IPL_2023.deliveries
+	         WHERE wides = '' AND noballs = ''
+	         GROUP BY batting_team) T2
+    ON T1.Team = T2.Team
+    LEFT JOIN
+	        (SELECT batting_team AS Team, COUNT(ball) AS Balls
+	         FROM IPL_2023.deliveries
+	         WHERE wides = ''
+	         GROUP BY batting_team) T3
+    ON T2.Team = T3.Team
+    LEFT JOIN
+	         (SELECT batting_team AS Team, COUNT(wicket_type) AS Wickets
+	         FROM IPL_2023.deliveries
+	         WHERE wicket_type != '' AND wicket_type != 'retired hurt'
+	         GROUP BY batting_team) T4
+    ON T3.Team = T4.Team
+    ORDER BY `Strike Rate` DESC;
