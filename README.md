@@ -184,8 +184,8 @@ With that, I conclude this brief summary of IPL 2023. Please feel free to scroll
     ORDER BY T1.Wickets DESC, Economy;
 
 ### Teamwise Batting Numbers
-    SELECT T1.Team, T1.Innings,  T1.Runs, T2.Overs, ROUND((T1.Runs/T3.Balls)*100, 2) AS 'Strike Rate', ROUND((T1.Runs/T2.Balls)*6, 2) AS 'Run Rate',
-	          ROUND((T1.Runs/T4.Wickets), 2) AS Average
+    SELECT T1.Team, T1.Innings,  T1.Runs, T2.Overs, ROUND((T1.Runs/T3.Balls)*100, 2) AS 'Strike Rate',
+    	   ROUND((T1.Runs/T2.Balls)*6, 2) AS 'Run Rate', ROUND((T1.Runs/T4.Wickets), 2) AS Average
     FROM (SELECT batting_team AS Team, COUNT(DISTINCT(match_id)) AS Innings, SUM(runs_off_bat) + SUM(extras) AS Runs
 	         FROM IPL_2023.deliveries
 	         GROUP BY batting_team) T1
@@ -208,3 +208,6 @@ With that, I conclude this brief summary of IPL 2023. Please feel free to scroll
 	         GROUP BY batting_team) T4
     ON T3.Team = T4.Team
     ORDER BY `Strike Rate` DESC;
+
+### Teamwise Bowling Numbers
+     
