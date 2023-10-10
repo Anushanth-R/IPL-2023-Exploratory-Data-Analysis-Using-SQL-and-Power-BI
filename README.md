@@ -4,7 +4,7 @@ Hello, everyone! I am excited to kickstart my journey to become a Data Analyst w
 ## Abstract
 In this cricket analytics project titled ‘IPL 2023 – Summarized in Numbers’, I have leveraged ball-by-ball data sourced from Kaggle, with due credit to its creator. Workflow includes data extraction using SQL, transformation, and visualization in Power BI Desktop. Starting with data acquisition, we gather the raw dataset from Kaggle and ensure proper attribution. Then, through SQL, we extract and refine relevant data, creating a structured dataset for downstream analytics. Using Power BI Desktop, has established connections and generate preliminary visual insights, acknowledging that aesthetics and image quality require future refinement. Will also provide sample SQL queries as a reference for in-depth analysis. Emphasizing ongoing improvements, we commit to enhancing visual appeal and image quality. I will share the Power BI file for easy access and encourage users to zoom in for a detailed view, recommending bigger screens for comprehensive exploration.
 ## IPL 2023 – Overall Numbers
-![Overall Summary](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/b32dfe4e-7a94-4d6f-858a-4a0e43d393f9)  
+![Overall Summary](./Overall%20Summary.png)  
 
 First up, we have the top 10 run-getters and top 10 wicket-takers, along with their average, strike rate, and economy comparisons. The final two plots provide a comparison between all teams. It was a closely fought tournament, as two teams secured 17 points each, while two other teams were just one win away from making it to the top 4. However, two teams did lose the race a bit early.
 ### Points to note:
@@ -16,14 +16,14 @@ First up, we have the top 10 run-getters and top 10 wicket-takers, along with th
 6. Bowling Strike Rate is calculated as balls bowled per wicket taken.
 7. Economy in bowling is defined as runs conceded per over bowled.
  
-![Rankings](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/aff42db2-8c58-4966-9ad5-c528a603f9a2)  
+![Rankings](./Rankings.png)  
 
 The picture above ranks teams based on various aspects of the game.
 
 ## Mumbai Indians
 The first team in this brief summary will be the Mumbai Indians, my favorite team in the Indian Premier League. They concluded the league in 4th position with 8 win to their name, and their campaign was brought to an end by GT in Qualifier 2.
 
-![MI](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/6b7f55c2-4abf-4783-8f56-606edc98e913)
+![MI](./MI.png)
 
 Mumbai Indians, known for their formidable batting unit, secured the top spot with a rank of 1 in terms of Strike Rate (SR). They were the only team with seven players who managed to score 200+ runs during the tournament. Impressively, among them, apart from Rohit Sharma, every player achieved a strike rate of over 140.
 
