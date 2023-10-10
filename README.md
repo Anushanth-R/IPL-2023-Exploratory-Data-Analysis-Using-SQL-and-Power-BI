@@ -32,7 +32,7 @@ However, their bowling attack faced challenges due to injuries to key players li
 ## Chennai Super Kings
 Next up is the reigning champions Chennai Super Kings, who secured their 5th title. They finished the league in 2nd place with 8 wins and were the first team to secure a spot in the finals.
 
-![CSK](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/0f3ed94f-c199-4fbf-b0d1-14fc1e08cff7)
+![CSK](./CSK.png)
 
 CSK maintained consistency throughout the tournament. In batting, the heavy lifting was primarily done by their openers, and Shivam Dube emerged as their X-factor. Additionally, we witnessed Ajinkya Rahane's surprising performance as he came in as a dark horse, striking at over 170.
 
@@ -41,7 +41,7 @@ Chennai Super Kings also exemplified the adage that bowlers win you tournaments,
 ## Gujarat Titans
 Following CSK, let's take a look at the runners-up, Gujarat Titans. They were the dominant team in the league stage, securing 10 wins to their name.
 
-![GT](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/ed5ed86e-d361-42ba-a8af-a3d165b8deee)
+![GT](./GT.png)
 
 Shubman Gill played a pivotal role in carrying their batting unit, receiving substantial support from other batters, especially in the middle order. They proved to be one of the most consistent batting units throughout the tournament. 
 
@@ -50,7 +50,7 @@ However, their primary strength lay in their bowling department, as evidenced by
 ## Lucknow Super Giants
 Now, let's turn our attention to the Lucknow Super Giants, who finished 3rd in the league stage with 8 wins but were eliminated by the Mumbai Indians in the Eliminator.
 
-![LSG](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/e396dccf-611b-4f26-bf2a-e807e2b7baf5)
+![LSG](./LSG.png)
 
 Despite valuable contributions from their overseas middle order players like Nicholas Pooran and Marcus Stoinis, Lucknow Super Giants struggled as one of the weakest batting teams in the tournament. Their top order faced consistency issues, with players like Kyle Mayers averaging less than 30 and KL Rahul striking at less than 120.
 
@@ -59,7 +59,7 @@ They found success primarily through their bowlers, who provided excellent contr
 ## Rajasthan Royals
 Next up is the Rajasthan Royals, who concluded their campaign at the 5th position with 7 wins. Just one more win would have been enough to secure a spot in the playoffs.
 
-![RR](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/bf0fa9c1-3af2-4a0d-b75a-38fceaf32d13)
+![RR](./RR.png)
 
 Rajasthan Royals had a situation similar to that of the Gujarat Titans, where Yashasvi Jaiswal carried the bulk of the batting responsibilities with some decent contributions from the middle order. Unfortunately, despite their efforts, it wasn't enough to secure a spot in the playoffs.
 
@@ -68,7 +68,7 @@ In terms of their bowling performance, the Rajasthan Royals had a middling seaso
 ## Royal Challengers Bangalore
 Next up, we have the Royal Challengers Bangalore, who concluded their campaign in the 6th position with a total of 7 wins.
 
-![RCB](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/7b8426eb-0e74-42ac-a32b-533cf31fc74c)
+![RCB](./RCB.png)
 
 I have specifically chosen batters with 100+ runs for RCB to emphasize the notable gap between their top 3 batsmen and the rest of the team. It's also worth noting that despite a fantastic season in the previous edition, Dinesh Karthik struggled to find his form with the bat this year.
 
@@ -77,7 +77,7 @@ They showcased their ability to take wickets effectively, making them one of the
 ## Kolkata Knight Riders
 Next in line are the former two-time champions, the Kolkata Knight Riders. Unfortunately, their season concluded at the 7th position with just 6 wins.
 
-![KKR](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/5ac17052-9bbd-4769-a644-99a75aa43be6)
+![KKR](./KKR.png)
 
 Despite having three batters who scored 400+ runs, the Kolkata Knight Riders' batting unit didn't function as a group, and some players faced consistency issues. Rinku Singh was the standout performer with the bat, emerging as the best finisher of the season and winning several matches for the team seemingly out of nowhere.
 
@@ -86,7 +86,7 @@ CV Varun stood out as the standout performer with the ball for them, but unfortu
 ## Punjab Kings
 Now, let's shift our focus to the Punjab Kings, who wrapped up their season at the 8th position with only 6 wins.
 
-![PBKS](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/c7a6ac01-8484-4aa7-8189-8744b8ee8d21)
+![PBKS](./PBKS.png)
 
 The Punjab Kings were another team that faced challenges in batting as a group and struggled with consistency. Prabhsimran Singh displayed his potential at the top of the order, but the team will be looking for more consistency from him in the upcoming season.
 
@@ -95,7 +95,7 @@ In terms of their bowling performance, the Punjab Kings had a challenging season
 ## Delhi Capitals
 Next, we have the Delhi Capitals, who concluded the season in the 9th position with just 5 wins to their name.
 
-![DC](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/fbdb3418-fa4b-4512-9495-c4623410d615)
+![DC](./DC.png)
 
 The Delhi Capitals struggled as the weakest batting unit in the tournament, ranking poorly in both strike rate and average. Despite David Warner's impressive 516 runs, his strike rate was just over 130. Unfortunately, apart from Axar Patel, no Indian batter provided significant contributions for the team.
 
@@ -104,7 +104,7 @@ Delhi Capitals also faced challenges in the bowling department, struggling to ta
 ## Sunrisers Hyderabad
 The final team in this summary is the Sunrisers Hyderabad. Despite having a strong team on paper after the auction, they struggled to translate that potential into performance on the field. They ultimately finished at the bottom of the table, securing only 4 wins during the season.
 
-![SRH](https://github.com/Anushanth-R/IPL_2023-Numbers_Visualized/assets/121890263/2cb181e6-b70f-451d-b159-2474db5ceed7)
+![SRH](./SRH.png)
 
 Heinrich Klaasen stood out as the lone performer with the bat for the Sunrisers Hyderabad. The difference in his performance compared to others is quite evident, especially when you examine the plot graph at the top right, highlighting his standout contributions.
 
@@ -130,7 +130,7 @@ With that, I conclude this brief summary of IPL 2023. Please feel free to scroll
   	        END AS 6s, T1.Team
     FROM (SELECT striker AS Player, SUM(runs_off_bat) AS Runs, COUNT(ball) AS Balls, 
           ROUND((SUM(runs_off_bat)/COUNT(ball))*100, 2) AS SR, batting_team AS Team
-         	FROM IPL_2023.deliveries
+        	FROM IPL_2023.deliveries
          	WHERE wides = ''
          	GROUP BY striker, batting_team
          	ORDER BY Runs DESC) T1
@@ -155,12 +155,12 @@ With that, I conclude this brief summary of IPL 2023. Please feel free to scroll
 
 ### Wicket Takers List
     SELECT T2.Player, T4.Innings, T3.Overs, T2.Runs,
-	          CASE
+	        CASE
 	             	WHEN T1.Wickets IS NULL THEN 0
 		             ELSE T1.Wickets
-	          END AS Wickets,
-		         ROUND((T2.Runs/T3.Balls)*6, 2) AS Economy, ROUND(T3.Balls/T1.Wickets, 2) AS SR,
-           ROUND(T2.Runs/Wickets, 2) AS Average, T1.Team
+	        END AS Wickets,
+		    ROUND((T2.Runs/T3.Balls)*6, 2) AS Economy, ROUND(T3.Balls/T1.Wickets, 2) AS SR,
+            ROUND(T2.Runs/Wickets, 2) AS Average, T1.Team
     FROM (SELECT bowler AS Player, COUNT(player_dismissed) AS Wickets, bowling_team AS Team
    	      FROM IPL_2023.deliveries
    	      WHERE player_dismissed != '' AND wicket_type NOT IN ('retired hurt', 'run out', 'retired out')
