@@ -4,7 +4,7 @@ Hello, everyone! I am excited to kickstart my journey to become a Data Analyst w
 ## Abstract
 In this cricket analytics project titled ‘IPL 2023 – Summarized in Numbers’, I have leveraged ball-by-ball data sourced from Kaggle, with due credit to its creator. Workflow includes data extraction using SQL, transformation, and visualization in Power BI Desktop. Starting with data acquisition, we gather the raw dataset from Kaggle and ensure proper attribution. Then, through SQL, we extract and refine relevant data, creating a structured dataset for downstream analytics. Using Power BI Desktop, has established connections and generate preliminary visual insights, acknowledging that aesthetics and image quality require future refinement. Will also provide sample SQL queries as a reference for in-depth analysis. Emphasizing ongoing improvements, we commit to enhancing visual appeal and image quality. I will share the Power BI file for easy access and encourage users to zoom in for a detailed view, recommending bigger screens for comprehensive exploration.
 ## IPL 2023 – Overall Numbers
-![Overall Summary](/Visuals/Overall%20Summary.png)  
+![Overall Summary](/Visuals/IMG_20211205_160600.jpg)  
 
 First up, we have the top 10 run-getters and top 10 wicket-takers, along with their average, strike rate, and economy comparisons. The final two plots provide a comparison between all teams. It was a closely fought tournament, as two teams secured 17 points each, while two other teams were just one win away from making it to the top 4. However, two teams did lose the race a bit early.
 ### Points to note:
