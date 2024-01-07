@@ -210,4 +210,128 @@ With that, I conclude this brief summary of IPL 2023. Please feel free to scroll
     ORDER BY `Strike Rate` DESC;
 
 ### Teamwise Bowling Numbers
-     
+    SELECT T1.Team, T1.Innings, T2.Wickets, T3.Overs, ROUND((T1.`Runs Given`/T3.Balls)*6, 2) AS Economy, 
+	   ROUND(T1.`Runs Given`/T2.Wickets, 2) AS Average,
+	   ROUND(T3.Balls/T2.Wickets, 2) AS 'Strike Rate'
+    FROM (SELECT bowling_team AS Team, COUNT(DISTINCT match_id) AS Innings, 
+	SUM(runs_off_bat) + SUM(extras) AS 'Runs Given'
+	FROM IPL_2023.deliveries
+	GROUP BY bowling_team) T1
+    JOIN
+	(SELECT bowling_team AS Team, COUNT(*) AS Wickets
+	FROM IPL_2023.deliveries
+	WHERE wicket_type NOT IN ('', 'retired hurt')
+	GROUP BY bowling_team) T2
+    ON T1.Team = T2.Team
+    JOIN
+	(SELECT bowling_team AS Team, COUNT(ball) AS Balls, 
+    ROUND(((FLOOR(COUNT(ball)/6)) + ((COUNT(ball)%6)/10)), 1) AS Overs
+	FROM IPL_2023.deliveries
+	WHERE wides = '' AND noballs = ''
+	GROUP BY bowling_team) T3
+    ON T1.Team = T3.Team
+    ORDER BY T2.Wickets DESC;
+
+### Batter vs Bowler Matchup
+    SELECT T1.Batsman, T1.Bowler, T1.Runs, T1.Balls,
+	CASE
+		WHEN T2.Dismissals is NULL THEN 0
+		ELSE T2.Dismissals
+	END AS Dismissals,
+	ROUND((Runs/Balls)*100, 2) AS SR
+    FROM (SELECT striker AS Batsman, bowler AS Bowler, SUM(runs_off_bat) AS Runs, COUNT(ball) AS Balls
+	FROM IPL_2023.deliveries
+	WHERE striker IN (SELECT DISTINCT(striker) FROM IPL_2023.deliveries) AND wides = ''
+	GROUP BY bowler, striker
+	ORDER BY Balls DESC) T1
+    LEFT OUTER JOIN
+	(SELECT striker, bowler, COUNT(player_dismissed) AS Dismissals
+	FROM IPL_2023.deliveries
+	WHERE bowler IN (SELECT DISTINCT(bowler) FROM IPL_2023.deliveries) AND player_dismissed != ''
+	GROUP BY striker, bowler) T2
+    ON T1.Bowler = T2.bowler AND T1.Batsman = T2.striker
+    ORDER BY Batsman;
+
+### Teams Performance Ranking
+    SELECT T1.Team, T1.`Eco. Rank`, T1.`Bowling Ave. Rank`, T1.`Bowling SR. Rank`, T2.`Batting SR. Rank`, 
+	   T2.`Batting Ave. Rank`, T2.`RR. Rank`
+    FROM
+	(SELECT Team, RANK() OVER (ORDER BY Economy ASC) AS 'Eco. Rank', 
+	RANK() OVER (ORDER BY Average ASC) AS 'Bowling Ave. Rank', 
+	RANK() OVER (ORDER BY `Strike Rate` ASC) AS 'Bowling SR. Rank'
+	FROM IPL_2023.teamwise_bowling) T1
+    JOIN
+	(SELECT Team, RANK() OVER (ORDER BY `Strike Rate` DESC) AS 'Batting SR. Rank', 
+	RANK() OVER (ORDER BY Average DESC) AS 'Batting Ave. Rank', 
+	RANK() OVER (ORDER BY `Run Rate` DESC) AS 'RR. Rank'
+	FROM IPL_2023.teamwise_batting) T2
+    ON T1.Team = T2.Team
+    ORDER BY `Eco. Rank`;
+
+### Temporary Table for Match Summary
+    create temporary table match_summary as (
+    SELECT
+	CONCAT(home_team, ' vs ', away_team) AS 'Match',
+	venue AS Venue,
+    	CONCAT(toss_winner, ' won the toss and decided to ', toss_decision) AS Toss_Result,
+   	 CASE
+		WHEN winner_runs = '' THEN CONCAT(winner, ' won by ', winner_wickets, ' wickets')
+        		WHEN winner_wickets = '' THEN CONCAT(winner, ' won by ', winner_runs, ' runs')
+	END AS Match_Result
+    FROM IPL_2023.match_data);
+
+### Phasewise Runs (Overs 1-6)
+    SELECT 
+        `t1`.`Player` AS `Player`,
+        `t4`.`Innings` AS `Innings`,
+        `t2`.`Dismissals` AS `Dismissals`,
+        `t1`.`Runs` AS `Runs`,
+        `t1`.`Balls` AS `Balls`,
+        `t1`.`SR` AS `SR`,
+        ROUND((`t1`.`Runs` / `t2`.`Dismissals`), 2) AS `Average`,
+        (CASE
+            WHEN (`t3`.`6s` IS NULL) THEN 0
+            ELSE `t3`.`6s`
+        END) AS `6s`,
+        `t1`.`Team` AS `Team`
+    FROM
+        ((((SELECT 
+            `deliveries`.`striker` AS `Player`,
+                SUM(`deliveries`.`runs_off_bat`) AS `Runs`,
+                COUNT(`deliveries`.`ball`) AS `Balls`,
+                ROUND(((SUM(`deliveries`.`runs_off_bat`) / COUNT(`deliveries`.`ball`)) * 100), 2) AS `SR`,
+                `deliveries`.`batting_team` AS `Team`
+        FROM
+            `deliveries`
+        WHERE
+            ((`deliveries`.`wides` = '')
+                AND (SUBSTR(`deliveries`.`ball`, 1, 2) IN ('0.' , '1.', '2.', '3.', '4.', '5.')))
+        GROUP BY `deliveries`.`striker` , `deliveries`.`batting_team`
+        ORDER BY `Runs` DESC) `T1`
+        LEFT JOIN (SELECT 
+            `deliveries`.`player_dismissed` AS `Player`,
+                COUNT(`deliveries`.`player_dismissed`) AS `Dismissals`
+        FROM
+            `deliveries`
+        WHERE
+            ((`deliveries`.`player_dismissed` <> '')
+                AND (SUBSTR(`deliveries`.`ball`, 1, 2) IN ('0.' , '1.', '2.', '3.', '4.', '5.')))
+        GROUP BY `deliveries`.`player_dismissed`) `T2` ON ((`t1`.`Player` = `t2`.`Player`)))
+        LEFT JOIN (SELECT 
+            `deliveries`.`striker` AS `Player`,
+                COUNT(`deliveries`.`runs_off_bat`) AS `6s`
+        FROM
+            `deliveries`
+        WHERE
+            ((`deliveries`.`runs_off_bat` = 6)
+                AND (SUBSTR(`deliveries`.`ball`, 1, 2) IN ('0.' , '1.', '2.', '3.', '4.', '5.')))
+        GROUP BY `deliveries`.`striker`) `T3` ON ((`t1`.`Player` = `t3`.`Player`)))
+        LEFT JOIN (SELECT 
+            `deliveries`.`striker` AS `Player`,
+                COUNT(DISTINCT `deliveries`.`match_id`) AS `Innings`
+        FROM
+            `deliveries`
+        WHERE
+            (SUBSTR(`deliveries`.`ball`, 1, 2) IN ('0.' , '1.', '2.', '3.', '4.', '5.'))
+        GROUP BY `deliveries`.`striker`) `T4` ON ((`t1`.`Player` = `t4`.`Player`)))
+    ORDER BY `t1`.`Runs` DESC;
